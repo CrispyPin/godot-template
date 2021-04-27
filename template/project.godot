@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="crispypin-template"
+run/main_scene="res://scenes/gui/Default.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Settings="*res://scripts/ui/settings.gd"
+UI="*res://scenes/gui/UI.tscn"
+
+[editor]
+
+convert_text_resources_to_binary_on_export=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
