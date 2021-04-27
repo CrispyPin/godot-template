@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 export var instant_start = false
 export var game_scene = preload("res://scenes/Game.tscn")
@@ -16,4 +16,5 @@ func start_game():
         return
     Settings.game_loaded = true
     var game = game_scene.instance()
-    get_tree().root.add_child(game)
+    get_tree().root.add_child_below_node(Settings, game)
+    hide()

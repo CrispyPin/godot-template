@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+size_flags_vertical = 3
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 99.0
+margin_bottom = 34.0
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+text = "button text"
+__meta__ = {
+"_edit_use_anchors_": false
+}
