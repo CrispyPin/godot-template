@@ -1,3 +1,4 @@
 # godot-template
-Template to save time in game jams
-Mainly contains a menu system and UI theme
+Template to save time in game jams.
+
+The main purpose is a menu system and UI theme.
