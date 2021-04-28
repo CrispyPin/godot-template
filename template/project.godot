@@ -11,13 +11,13 @@ config_version=4
 [application]
 
 config/name="crispypin-template"
-run/main_scene="res://scenes/gui/Default.tscn"
+run/main_scene="res://scenes/ui/Default.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Settings="*res://scripts/ui/settings.gd"
-UI="*res://scenes/gui/UI.tscn"
+UI="*res://scenes/ui/UI.tscn"
 
 [editor]
 
