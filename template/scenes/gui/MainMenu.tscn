@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/gui/Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/ui/menu_main.gd" type="Script" id=2]
 [ext_resource path="res://themes/main.theme" type="Theme" id=3]
 [ext_resource path="res://scenes/gui/Title.tscn" type="PackedScene" id=4]
+[ext_resource path="res://themes/background.theme" type="Theme" id=5]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -23,15 +24,14 @@ margin_left = -214.0
 margin_top = -85.5159
 margin_right = 214.0
 margin_bottom = 292.484
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 427.0
-margin_bottom = 377.0
+margin_right = 428.0
+margin_bottom = 378.0
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
@@ -40,15 +40,14 @@ custom_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 422.0
-margin_bottom = 371.0
-alignment = 1
+margin_right = 424.0
+margin_bottom = 373.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_right = 418.0
+margin_right = 420.0
 margin_bottom = 70.0
 
 [node name="Play" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
@@ -57,12 +56,11 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 74.0
-margin_right = 418.0
-margin_bottom = 144.0
+margin_right = 420.0
+margin_bottom = 143.0
 
 [node name="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Play" index="0"]
-margin_right = 414.0
-margin_bottom = 66.0
+margin_right = 416.0
 text = "Play"
 
 [node name="Settings" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
@@ -70,13 +68,12 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 148.0
-margin_right = 418.0
-margin_bottom = 218.0
+margin_top = 147.0
+margin_right = 420.0
+margin_bottom = 216.0
 
 [node name="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Settings" index="0"]
-margin_right = 414.0
-margin_bottom = 66.0
+margin_right = 416.0
 text = "Settings"
 
 [node name="Info" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
@@ -84,13 +81,12 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 222.0
-margin_right = 418.0
-margin_bottom = 292.0
+margin_top = 220.0
+margin_right = 420.0
+margin_bottom = 289.0
 
 [node name="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Info" index="0"]
-margin_right = 414.0
-margin_bottom = 66.0
+margin_right = 416.0
 text = "About"
 
 [node name="Exit" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
@@ -98,13 +94,12 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 296.0
-margin_right = 418.0
-margin_bottom = 367.0
+margin_top = 293.0
+margin_right = 420.0
+margin_bottom = 362.0
 
 [node name="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Exit" index="0"]
-margin_right = 414.0
-margin_bottom = 67.0
+margin_right = 416.0
 text = "Exit"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Play/Button" to="." method="_on_PlayButton_pressed"]
