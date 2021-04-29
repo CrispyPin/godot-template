@@ -3,11 +3,10 @@ extends Control
 export var instant_start = false
 export var game_scene = preload("res://scenes/Game.tscn")
 
-enum {MENU_CLOSED, MENU_MAIN, MENU_GAME, MENU_SETTINGS, MENU_INFO}
-var curren_menu = MENU_MAIN
+var current_menu = "MainMenu"
 
 func _ready():
-    menu_main()
+    set_menu("Main")
     if instant_start:
         call_deferred("start_game")
 
@@ -16,10 +15,10 @@ func _process(_delta):
         start_game()
 
     if Input.is_action_just_pressed("game_menu") and Settings.game_loaded:
-        if curren_menu == MENU_CLOSED:
-            menu_game()
-        elif curren_menu == MENU_GAME:
-            menu_close()
+        if current_menu == "No":
+            set_menu("Game")
+        elif current_menu == "Game":
+            set_menu()
 
 func start_game():
     if Settings.game_loaded:
@@ -27,36 +26,16 @@ func start_game():
     Settings.game_loaded = true
     var game = game_scene.instance()
     get_tree().root.add_child_below_node(Settings, game)
-    menu_close()
+    set_menu()
 
 func stop_game():
     if !Settings.game_loaded:
         return
     Settings.game_loaded = false
     get_node("/root/Game").queue_free()
-    menu_main()
+    set_menu("Main")
 
-func menu_main():
-    menu_close()
-    $MainMenu.show()
-    curren_menu = MENU_MAIN
-
-func menu_game():
-    menu_close()
-    $GameMenu.show()
-    curren_menu = MENU_GAME
-
-func menu_settings():
-    menu_close()
-    $SettingsMenu.show()
-    curren_menu = MENU_SETTINGS
-
-func menu_info():
-    menu_close()
-    $InfoMenu.show()
-    curren_menu = MENU_INFO
-
-func menu_close():
-    for menu in get_children():
-        menu.visible = false
-    curren_menu = MENU_CLOSED
+func set_menu(menu_name := "No"):
+    for m in $Menus.get_children():
+        m.visible = m.name == menu_name + "Menu"
+    current_menu = menu_name

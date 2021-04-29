@@ -1,9 +1,7 @@
 extends Control
 
-
-
 func _on_BackButton_pressed() -> void:
     if Settings.game_loaded:
-        UI.menu_game()
+        UI.set_menu("Game")
     else:
-        UI.menu_main()
+        UI.set_menu("Main")
