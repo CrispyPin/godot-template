@@ -28,7 +28,7 @@ func _generate_menu():
         if s_prop.has("main_menu_only") and s_prop.main_menu_only:
             main_menu_only.append(new_item)
 
-        container.add_child_below_node(container_title, new_item)
+        container.add_child_below_node(container.get_children()[-2], new_item)
 
 func _add_toggle(name, properties):
     var item = toggle_setting.instance()
@@ -49,12 +49,25 @@ func _add_number(name, properties):
     spinbox.min_value = properties.min
     spinbox.max_value = properties.max
     spinbox.value = properties.default
-    spinbox.step = properties.step
+    if properties.has("step"):
+        spinbox.step = properties.step
     item.get_child(0).get_child(0).get_child(0).text = properties.name
     return item
 
 func _add_option(name, properties):
     var item = dropdown_setting.instance()
+    var btn = item.get_child(0)
+    btn.connect("on_selection_changed", self, "_on_option_changed", [name])
+
+    var popup = btn.get_popup()
+    for i in range(len(properties.options)):
+        popup.add_item(properties.options[i])
+        popup.set_item_as_radio_checkable(i, true)
+    popup.set_item_checked(properties.default, true)
+
+    item.name = name
+    btn.text = properties.name + ": " + properties.options[properties.default]
+    btn.base_name = properties.name
     return item
 
 func _on_toggle_changed(name):
@@ -66,6 +79,9 @@ func _on_number_changed(val, name):
     Global.settings[name] = val
     print(name, ": ", val)
 
+func _on_option_changed(val, name):
+    Global.settings[name] = val
+    print(name, ": ", val)
 
 
 

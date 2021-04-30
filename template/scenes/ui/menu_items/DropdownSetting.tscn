@@ -23,5 +23,4 @@ margin_bottom = 65.0
 focus_mode = 2
 text = "Option"
 align = 0
-items = [ "Option 1", null, 2, false, false, 0, 0, null, "", false, "Option 2", null, 2, false, false, 1, 0, null, "", false, "Option 3", null, 1, true, false, 2, 0, null, "", false, "Item 3", null, 0, false, false, 3, 0, null, "", false ]
 script = ExtResource( 2 )

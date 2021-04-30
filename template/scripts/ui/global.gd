@@ -5,23 +5,23 @@ var paused = false
 
 var settings_def = {
     "example_toggle": {
-        "name": "Example Toggle",
+        "name": "A Toggle",
         "main_menu_only": true,#optional
         "type": "toggle",
         "default": false
     },
     "example_number": {
-        "name": "Example Number",
+        "name": "A Number",
         "type": "number",
-        "default": 0,
+        "default": 420,
         "min": 1,
-        "max": 100000000,
+        "max": 10000,
         "step": 1#optional
     },
     "example_choice": {
-        "name": "Example Dropdown",
+        "name": "A Dropdown",
         "type": "choice",
-        "default": 0,
+        "default": 1,
         "options": ["Option A", "Option B", "Option C"]
     }
 }
