@@ -4,16 +4,20 @@ export var toggle_setting = preload("res://scenes/ui/menu_items/ButtonToggle.tsc
 export var number_setting = preload("res://scenes/ui/menu_items/NumberSetting.tscn")
 export var dropdown_setting = preload("res://scenes/ui/menu_items/DropdownSetting.tscn")
 
-var container
-var container_title
+onready var container = get_node("PanelContainer/MarginContainer/VBoxContainer")
+onready var container_title = container.get_child(0)
 var main_menu_only = []
 
 func _ready() -> void:
-    container = $PanelContainer/MarginContainer/VBoxContainer
-    container_title = container.get_child(0)
-    _generate_menu()
+    create_menu()
 
-func _generate_menu():
+func update_menu():
+    for i in container.get_children():
+        if i in main_menu_only:
+            i.visible = !Global.game_loaded
+
+
+func create_menu():
     for s_key in Global.settings_def:
         var s_prop = Global.settings_def[s_key]
         var new_item
@@ -27,8 +31,10 @@ func _generate_menu():
 
         if s_prop.has("main_menu_only") and s_prop.main_menu_only:
             main_menu_only.append(new_item)
+            print(s_prop.name + " in main only")
 
         container.add_child_below_node(container.get_children()[-2], new_item)
+    print(main_menu_only)
 
 func _add_toggle(name, properties):
     var item = toggle_setting.instance()

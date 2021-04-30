@@ -27,6 +27,7 @@ func start_game():
     var game = game_scene.instance()
     get_tree().root.add_child(game)
     set_menu()
+    $Menus/SettingsMenu.update_menu()
 
 func stop_game():
     if !Global.game_loaded:
@@ -34,6 +35,7 @@ func stop_game():
     Global.game_loaded = false
     get_node("/root/Game").queue_free()
     set_menu("Main")
+    $Menus/SettingsMenu.update_menu()
 
 func set_menu(menu_name := "No"):
     for m in $Menus.get_children():

@@ -5,13 +5,13 @@ var paused = false
 
 var settings_def = {
     "example_toggle": {
-        "name": "A Toggle",
+        "name": "Toggle (main menu)",
         "main_menu_only": true,#optional
         "type": "toggle",
         "default": false
     },
     "example_number": {
-        "name": "A Number",
+        "name": "Number setting",
         "type": "number",
         "default": 420,
         "min": 1,
