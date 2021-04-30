@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://themes/main.theme" type="Theme" id=1]
+[ext_resource path="res://scripts/ui/dropdown_button.gd" type="Script" id=2]
+
+[node name="DropdownSetting" type="MarginContainer"]
+margin_right = 1016.0
+margin_bottom = 69.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="MenuButton" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1012.0
+margin_bottom = 65.0
+focus_mode = 2
+text = "Option"
+align = 0
+items = [ "Option 1", null, 2, false, false, 0, 0, null, "", false, "Option 2", null, 2, false, false, 1, 0, null, "", false, "Option 3", null, 1, true, false, 2, 0, null, "", false, "Item 3", null, 0, false, false, 3, 0, null, "", false ]
+script = ExtResource( 2 )

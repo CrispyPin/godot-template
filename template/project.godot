@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://scripts/ui/settings.gd"
+Global="*res://scripts/ui/global.gd"
 UI="*res://scenes/ui/UI.tscn"
 
 [editor]

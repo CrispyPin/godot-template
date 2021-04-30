@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 export var instant_start = false
 export var game_scene = preload("res://scenes/Game.tscn")
@@ -14,24 +14,24 @@ func _process(_delta):
     if Input.is_key_pressed(KEY_F5):
         start_game()
 
-    if Input.is_action_just_pressed("game_menu") and Settings.game_loaded:
+    if Input.is_action_just_pressed("game_menu") and Global.game_loaded:
         if current_menu == "No":
             set_menu("Game")
         elif current_menu == "Game":
             set_menu()
 
 func start_game():
-    if Settings.game_loaded:
+    if Global.game_loaded:
         return
-    Settings.game_loaded = true
+    Global.game_loaded = true
     var game = game_scene.instance()
-    get_tree().root.add_child_below_node(Settings, game)
+    get_tree().root.add_child(game)
     set_menu()
 
 func stop_game():
-    if !Settings.game_loaded:
+    if !Global.game_loaded:
         return
-    Settings.game_loaded = false
+    Global.game_loaded = false
     get_node("/root/Game").queue_free()
     set_menu("Main")
 

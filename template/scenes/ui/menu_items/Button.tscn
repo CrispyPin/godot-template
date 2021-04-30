@@ -7,6 +7,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -304.0
+margin_bottom = -231.0
 theme = ExtResource( 2 )
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
@@ -19,11 +23,12 @@ __meta__ = {
 [node name="Button" type="Button" parent="."]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 194.0
+margin_right = 204.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
 text = "button text"
+align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
