@@ -7,15 +7,17 @@ export var dropdown_setting = preload("res://scenes/ui/menu_items/DropdownSettin
 onready var container = get_node("PanelContainer/MarginContainer/VBoxContainer")
 onready var container_title = container.get_child(0)
 var main_menu_only = []
+var has_initialised = false
 
-func _ready() -> void:
-    create_menu()
+func _process(_delta) -> void:
+    if Global.settings_loaded and !has_initialised:
+        create_menu()
+        has_initialised = true
 
 func update_menu():
     for i in container.get_children():
         if i in main_menu_only:
             i.visible = !Global.game_loaded
-
 
 func create_menu():
     for s_key in Global.settings_def:
@@ -42,7 +44,7 @@ func _add_toggle(name, properties):
 
     item.name = name
     btn.text = properties.name
-    btn.pressed = properties.default
+    btn.pressed = Global.settings[name]
     return item
 
 func _add_number(name, properties):
@@ -53,7 +55,7 @@ func _add_number(name, properties):
     item.name = name
     spinbox.min_value = properties.min
     spinbox.max_value = properties.max
-    spinbox.value = properties.default
+    spinbox.value = Global.settings[name]
     if properties.has("step"):
         spinbox.step = properties.step
     item.get_child(0).get_child(0).get_child(0).text = properties.name
@@ -66,26 +68,20 @@ func _add_option(name, properties):
 
     for i in properties.options:
         btn.add_item(properties.name + i)
-    btn.selected = properties.default
+    btn.selected = Global.settings[name]
 
     item.name = name
     return item
 
 func _on_toggle_changed(name):
     var state = container.get_node(name).get_child(0).pressed
-    Global.settings[name] = state
-    if Global.debug_settings:
-        print(name, ": ", state)
+    Global.set_setting(name, state)
 
 func _on_number_changed(val, name):
-    Global.settings[name] = val
-    if Global.debug_settings:
-        print(name, ": ", val)
+    Global.set_setting(name, val)
 
 func _on_option_changed(val, name):
-    Global.settings[name] = val
-    if Global.debug_settings:
-        print(name, ": ", val)
+    Global.set_setting(name, val)
 
 
 func _on_BackButton_pressed() -> void:
