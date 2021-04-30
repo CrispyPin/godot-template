@@ -3,6 +3,8 @@ extends Node
 var game_loaded = false
 var paused = false
 
+var debug_settings = false
+
 var settings_def = {
     "example_toggle": {
         "name": "Toggle (main menu)",
@@ -32,7 +34,9 @@ func _ready() -> void:
     for key in settings_def:
         var setting = settings_def[key]
         settings[key] = setting.default
-    print(settings)
+
+    if debug_settings:
+        print("Settings: ", settings)
 
     get_node("/root/Default").queue_free()
 

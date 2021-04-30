@@ -31,10 +31,9 @@ func create_menu():
 
         if s_prop.has("main_menu_only") and s_prop.main_menu_only:
             main_menu_only.append(new_item)
-            print(s_prop.name + " in main only")
 
         container.add_child_below_node(container.get_children()[-2], new_item)
-    print(main_menu_only)
+
 
 func _add_toggle(name, properties):
     var item = toggle_setting.instance()
@@ -75,18 +74,18 @@ func _add_option(name, properties):
 func _on_toggle_changed(name):
     var state = container.get_node(name).get_child(0).pressed
     Global.settings[name] = state
-    print(name, ": ", state)
+    if Global.debug_settings:
+        print(name, ": ", state)
 
 func _on_number_changed(val, name):
     Global.settings[name] = val
-    print(name, ": ", val)
+    if Global.debug_settings:
+        print(name, ": ", val)
 
 func _on_option_changed(val, name):
     Global.settings[name] = val
-    print(name, ": ", val)
-
-
-
+    if Global.debug_settings:
+        print(name, ": ", val)
 
 
 func _on_BackButton_pressed() -> void:
