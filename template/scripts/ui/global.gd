@@ -19,7 +19,7 @@ var settings_def = {
         "step": 1#optional
     },
     "example_choice": {
-        "name": "A Dropdown",
+        "name": "Dropdown: ",
         "type": "choice",
         "default": 1,
         "options": ["Option A", "Option B", "Option C"]
