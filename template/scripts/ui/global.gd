@@ -10,12 +10,38 @@ const settings_filepath = "user://settings.json"
 const settings_def = {
     "example_toggle": {
         "name": "Toggle (main menu)",
-        "main_menu_only": true,#optional
+        "flags": ["main_menu_only"],
+        "tooltip": "tooltip here",
+        "type": "toggle",
+        "default": false
+    },
+    "example_toggle2": {
+        "name": "Toggle",
+        "flags": [],
+        "type": "toggle",
+        "default": false
+    },
+    "example_toggle3": {
+        "name": "Toggle (main menu)",
+        "flags": ["main_menu_only"],
+        "type": "toggle",
+        "default": false
+    },
+    "example_toggle4": {
+        "name": "Toggle (main menu)",
+        "flags": ["main_menu_only"],
+        "type": "toggle",
+        "default": false
+    },
+    "example_toggle5": {
+        "name": "Toggle (main menu)",
+        "flags": ["main_menu_only"],
         "type": "toggle",
         "default": false
     },
     "example_number": {
         "name": "Number setting",
+        "flags": [],
         "type": "number",
         "default": 420,
         "min": 1,
@@ -24,6 +50,7 @@ const settings_def = {
     },
     "example_choice": {
         "name": "Dropdown: ",
+        "flags": [],
         "type": "choice",
         "default": 1,
         "options": ["Option A", "Option B", "Option C"]

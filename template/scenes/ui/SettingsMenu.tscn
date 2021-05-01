@@ -17,43 +17,58 @@ __meta__ = {
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
+anchor_bottom = 1.0
 theme = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 margin_right = 1024.0
-margin_bottom = 151.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 1020.0
-margin_bottom = 147.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
 theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="Title" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_right = 1016.0
 margin_bottom = 70.0
 
-[node name="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Title" index="0"]
+[node name="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Title" index="0"]
 margin_right = 1012.0
 margin_bottom = 66.0
 
-[node name="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Title/PanelContainer" index="0"]
+[node name="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Title/PanelContainer" index="0"]
 margin_right = 1002.0
 margin_bottom = 56.0
 text = "Settings"
 
-[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+[node name="Back" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -63,11 +78,11 @@ margin_top = 74.0
 margin_right = 1016.0
 margin_bottom = 143.0
 
-[node name="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Back" index="0"]
+[node name="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Back" index="0"]
 margin_right = 1012.0
 text = "Back"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back/Button" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Back/Button" to="." method="_on_BackButton_pressed"]
 
-[editable path="PanelContainer/MarginContainer/VBoxContainer/Title"]
-[editable path="PanelContainer/MarginContainer/VBoxContainer/Back"]
+[editable path="ScrollContainer/MarginContainer/VBoxContainer/Title"]
+[editable path="ScrollContainer/MarginContainer/VBoxContainer/Back"]

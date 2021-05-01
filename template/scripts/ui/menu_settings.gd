@@ -4,7 +4,7 @@ export var toggle_setting = preload("res://scenes/ui/menu_items/ButtonToggle.tsc
 export var number_setting = preload("res://scenes/ui/menu_items/NumberSetting.tscn")
 export var dropdown_setting = preload("res://scenes/ui/menu_items/DropdownSetting.tscn")
 
-onready var container = get_node("PanelContainer/MarginContainer/VBoxContainer")
+onready var container = get_node("ScrollContainer/MarginContainer/VBoxContainer")
 onready var container_title = container.get_child(0)
 var main_menu_only = []
 var has_initialised = false
@@ -15,24 +15,29 @@ func _process(_delta) -> void:
         has_initialised = true
 
 func update_menu():
-    for i in container.get_children():
-        if i in main_menu_only:
-            i.visible = !Global.game_loaded
+    for i in main_menu_only:
+        i.disabled = Global.game_loaded
 
 func create_menu():
     for s_key in Global.settings_def:
         var s_prop = Global.settings_def[s_key]
         var new_item
+        var btn
 
         if s_prop.type == "toggle":
             new_item = _add_toggle(s_key, s_prop)
+            btn = new_item.get_child(0)
         elif s_prop.type == "number":
             new_item = _add_number(s_key, s_prop)
+            btn = new_item.get_node("HSplitContainer/SpinBox")
         elif s_prop.type == "choice":
             new_item = _add_option(s_key, s_prop)
+            btn = new_item.get_child(0)
 
-        if s_prop.has("main_menu_only") and s_prop.main_menu_only:
-            main_menu_only.append(new_item)
+        if "main_menu_only" in s_prop.flags:
+            main_menu_only.append(btn)
+        if s_prop.has("tooltip"):
+            btn.hint_tooltip = s_prop.tooltip
 
         container.add_child_below_node(container.get_children()[-2], new_item)
 
