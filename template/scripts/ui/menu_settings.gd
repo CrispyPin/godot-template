@@ -4,8 +4,7 @@ export var toggle_setting = preload("res://scenes/ui/menu_items/ButtonToggle.tsc
 export var number_setting = preload("res://scenes/ui/menu_items/NumberSetting.tscn")
 export var dropdown_setting = preload("res://scenes/ui/menu_items/DropdownSetting.tscn")
 
-onready var container = get_node("ScrollContainer/MarginContainer/VBoxContainer")
-onready var container_title = container.get_child(0)
+onready var container = get_node("PanelContainer/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer")
 var main_menu_only = []
 var has_initialised = false
 
@@ -39,7 +38,8 @@ func create_menu():
         if s_prop.has("tooltip"):
             btn.hint_tooltip = s_prop.tooltip
 
-        container.add_child_below_node(container.get_children()[-2], new_item)
+        container.add_child(new_item)
+        container.move_child(new_item, container.get_child_count()-2)
 
 
 func _add_toggle(name, properties):

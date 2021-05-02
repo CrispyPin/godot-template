@@ -8,7 +8,7 @@
 
 [node name="UI" type="CanvasLayer"]
 pause_mode = 2
-layer = 50
+layer = 100
 script = ExtResource( 2 )
 
 [node name="Menus" type="MarginContainer" parent="."]
