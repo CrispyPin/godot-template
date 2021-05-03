@@ -1,25 +1,30 @@
 extends Control
 
-export var toggle_setting = preload("res://scenes/ui/menu_items/ButtonToggle.tscn")
-export var number_setting = preload("res://scenes/ui/menu_items/NumberSetting.tscn")
-export var dropdown_setting = preload("res://scenes/ui/menu_items/DropdownSetting.tscn")
 
-onready var container = get_node("PanelContainer/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer")
-var main_menu_only = []
 var has_initialised = false
+
+var _toggle_setting = preload("res://scenes/ui/menu_items/ButtonToggle.tscn")
+var _number_setting = preload("res://scenes/ui/menu_items/NumberSetting.tscn")
+var _dropdown_setting = preload("res://scenes/ui/menu_items/DropdownSetting.tscn")
+var _main_menu_only = []
+
+onready var _container = get_node("PanelContainer/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer")
+
 
 func _process(_delta) -> void:
     if Global.settings_loaded and !has_initialised:
         create_menu()
         has_initialised = true
 
+
 func update_menu():
-    for i in main_menu_only:
+    for i in _main_menu_only:
         i.disabled = Global.game_loaded
 
+
 func create_menu():
-    for s_key in Global.settings_def:
-        var s_prop = Global.settings_def[s_key]
+    for s_key in Global.SETTINGS_DEF:
+        var s_prop = Global.SETTINGS_DEF[s_key]
         var new_item
         var btn
 
@@ -34,16 +39,16 @@ func create_menu():
             btn = new_item.get_child(0)
 
         if "main_menu_only" in s_prop.flags:
-            main_menu_only.append(btn)
+            _main_menu_only.append(btn)
         if s_prop.has("tooltip"):
             btn.hint_tooltip = s_prop.tooltip
 
-        container.add_child(new_item)
-        container.move_child(new_item, container.get_child_count()-2)
+        _container.add_child(new_item)
+        _container.move_child(new_item, _container.get_child_count()-2)
 
 
 func _add_toggle(name, properties):
-    var item = toggle_setting.instance()
+    var item = _toggle_setting.instance()
     var btn = item.get_child(0)
     btn.connect("pressed", self, "_on_toggle_changed", [name])
 
@@ -52,8 +57,9 @@ func _add_toggle(name, properties):
     btn.pressed = Global.settings[name]
     return item
 
+
 func _add_number(name, properties):
-    var item = number_setting.instance()
+    var item = _number_setting.instance()
     var spinbox = item.get_child(0).get_child(1)
     spinbox.connect("value_changed", self, "_on_number_changed", [name])
 
@@ -66,8 +72,9 @@ func _add_number(name, properties):
     item.get_child(0).get_child(0).get_child(0).text = properties.name
     return item
 
+
 func _add_option(name, properties):
-    var item = dropdown_setting.instance()
+    var item = _dropdown_setting.instance()
     var btn = item.get_child(0)
     btn.connect("item_selected", self, "_on_option_changed", [name])
 
@@ -78,12 +85,15 @@ func _add_option(name, properties):
     item.name = name
     return item
 
+
 func _on_toggle_changed(name):
-    var state = container.get_node(name).get_child(0).pressed
+    var state = _container.get_node(name).get_child(0).pressed
     Global.set_setting(name, state)
+
 
 func _on_number_changed(val, name):
     Global.set_setting(name, val)
+
 
 func _on_option_changed(val, name):
     Global.set_setting(name, val)
