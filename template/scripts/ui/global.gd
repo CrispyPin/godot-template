@@ -1,5 +1,7 @@
 extends Node
 
+const PAUSE_IN_MENU  = true
+const CAPTURE_CURSOR = true
 
 const DEBUG_SETTINGS = false
 const SETTINGS_PATH = "user://settings.json"
@@ -14,18 +16,6 @@ const SETTINGS_DEF = {
     "example_toggle2": {
         "name": "Toggle",
         "flags": [],
-        "type": "toggle",
-        "default": false
-    },
-    "example_toggle3": {
-        "name": "Toggle (main menu)",
-        "flags": ["main_menu_only"],
-        "type": "toggle",
-        "default": false
-    },
-    "example_toggle4": {
-        "name": "Toggle (main menu)",
-        "flags": ["main_menu_only"],
         "type": "toggle",
         "default": false
     },
