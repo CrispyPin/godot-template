@@ -1,7 +1,6 @@
 extends Node
 
 
-export var instant_start = false
 export var game_scene = preload("res://scenes/Game.tscn")
 
 var current_menu = "Main"
@@ -9,7 +8,7 @@ var current_menu = "Main"
 
 func _ready():
 	set_menu("Main")
-	if instant_start:
+	if Global.INSTANT_START:
 		call_deferred("start_game")
 
 

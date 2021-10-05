@@ -2,6 +2,8 @@ extends Node
 
 const PAUSE_IN_MENU  = true
 const CAPTURE_CURSOR = true
+const INSTANT_START = false
+
 
 const DEBUG_SETTINGS = false
 const SETTINGS_PATH = "user://settings.json"
@@ -53,7 +55,6 @@ func _ready() -> void:
 	_init_settings()
 	load_settings()
 	settings_loaded = true
-	get_node("/root/Default").queue_free()
 
 
 func set_setting(key, val):
